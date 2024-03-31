@@ -158,7 +158,7 @@ gasket_handle_interrupt(struct gasket_interrupt_data *interrupt_data,
 	read_lock(&interrupt_data->eventfd_ctx_lock);
 	ctx = interrupt_data->eventfd_ctxs[interrupt_index];
 	if (ctx)
-		eventfd_signal(ctx, 1);
+		eventfd_signal(ctx);	// DARRYN HACK - UPDATE FOR NEW KERNEL
 	read_unlock(&interrupt_data->eventfd_ctx_lock);
 
 	++(interrupt_data->interrupt_counts[interrupt_index]);
